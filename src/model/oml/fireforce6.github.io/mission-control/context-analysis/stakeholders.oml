@@ -35,4 +35,10 @@ description <https://fireforce6.github.io/mission-control/context-analysis/stake
         base:description "Ensures alerts, communications, and responses comply with safety protocols."
         base:category "Support"
     ]
+
+    @rdfs:label "Emergency Response Team"
+    instance EmergencyResponseTeam : stakeholder:Stakeholder [
+        base:description "Team responsible for coordinating emergency response efforts in affected communities during fire incidents."
+        base:category "Support"
+    ]
 }

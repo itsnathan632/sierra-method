@@ -133,6 +133,11 @@ description <https://fireforce6.github.io/mission-control/system-analysis/compon
         base:isContainedBy ElectronicsSegment
     ]
 
+    instance EmergencyDataRelay : component:Component [
+        base:description "Emergency Data Relay for Transmitting Critical Fire Updates"
+        base:isContainedBy CommunicationSubsystem
+    ]
+
     instance CommUnit : component:Component [
         base:description "S-Band Transceiver"
         base:isContainedBy CommunicationSubsystem
@@ -201,6 +206,11 @@ description <https://fireforce6.github.io/mission-control/system-analysis/compon
     instance OBC : component:Component [
         base:description "On-Board Computer"
         base:isContainedBy ElectronicsSegment
+    ]
+
+    instance AlertProcessingModule : component:Component [
+        base:description "Processes Alerts and Prioritizes Emergency Alert Data for Transmission"
+        base:isContainedBy OBC
     ]
 
     instance MainProcessor : component:Component [
@@ -376,6 +386,11 @@ description <https://fireforce6.github.io/mission-control/system-analysis/compon
     instance ADCSSubsystem : component:Component [
         base:description "Attitude Determination & Control Subsystem"
         base:isContainedBy ServiceSegment
+    ]
+
+    instance EmergencyPointingController : component:Component [
+        base:description "Emergency Attitude Control for Emergency Observation Tasks"
+        base:isContainedBy ADCSSubsystem
     ]
 
     instance StarTracker : component:Component [
@@ -850,6 +865,16 @@ description <https://fireforce6.github.io/mission-control/system-analysis/compon
 
     instance PayloadInterface : component:Component [
         base:description "SpaceWire Interface to OBC"
+        base:isContainedBy PayloadProcessor
+    ]
+
+    instance ImageBuffer : component:Component [
+        base:description "High-Speed Image Buffer"
+        base:isContainedBy PayloadProcessor
+    ]
+
+    instance DataFormatter : component:Component [
+        base:description "Payload Data Formatting Unit"
         base:isContainedBy PayloadProcessor
     ]
 
