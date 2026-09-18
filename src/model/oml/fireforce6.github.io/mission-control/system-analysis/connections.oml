@@ -7,16 +7,21 @@ description <https://fireforce6.github.io/mission-control/system-analysis/connec
     ref instance components:FireSat [
         component:hasPort FireSat.Command_In
         component:hasPort FireSat.Telemetry_Out
+        component:hasPort FireSat.Status_In
+        component:hasPort FireSat.Status_Out
     ]
     instance FireSat.Command_In : component:Port [ component:direction "In" ]
     instance FireSat.Telemetry_Out : component:Port [ component:direction "Out" ]
-
+    instance FireSat.Status_In : component:Port [ component:direction "In" ]
+    instance FireSat.Status_Out : component:Port [ component:direction "Out" ]
     ref instance components:Payload [
         component:hasPort Payload.Data_Out
         component:hasPort Payload.Power_In
+        component:hasPort Payload.Image_In
     ]
     instance Payload.Data_Out : component:Port [ component:direction "Out" ]
     instance Payload.Power_In : component:Port [ component:direction "In" ]
+    instance Payload.Image_In : component:Port [ component:direction "In" ]
 
     ref instance components:Platform [
         component:hasPort Platform.Data_In
