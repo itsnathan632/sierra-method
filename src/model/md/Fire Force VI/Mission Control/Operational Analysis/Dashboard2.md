@@ -221,3 +221,42 @@ display(clientWidget(f'<label>Category: <select>{options}</select></label>', ren
 display('<div id="stk-table"></div>')
 render("")
 ```
+
+## Capability Orphans
+
+### Question
+
+Which capabilities are not connected to any process that describes them?
+
+### Evidence
+
+```table
+---
+orderBy: ["capability asc"]
+---
+PREFIX oml: <http://opencaesar.io/oml#>
+PREFIX process: <https://www.modelware.io/sierra/process#>
+PREFIX mission: <https://www.modelware.io/sierra/mission#>
+
+SELECT ?capability ?problem
+WHERE {
+    ?capability a mission:Capability .
+
+    FILTER NOT EXISTS {
+        ?process process:describes ?capability .
+    }
+
+    BIND("Capability is not described by any process" AS ?problem)
+}
+ORDER BY ?capability
+```
+
+### Interpretation
+**Finding:** Six capabilities are not described by any process: C1, C3, C4, C6, C7, and C8.
+
+**Meaning:** These results show gaps in the process-to-capability relationships in the current model. The remaining capabilities are connected to at least one process.
+
+## Reusable Capability Coverage
+```compose
+template: https://www.modelware.io/sierra/assignment5-analysis
+```
