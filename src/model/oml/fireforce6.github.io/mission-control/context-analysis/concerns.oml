@@ -46,4 +46,12 @@ description <https://fireforce6.github.io/mission-control/context-analysis/conce
         base:priority "High"
         base:category "Need"
     ]
+
+    @rdfs:label "Emergency Response Team Needs"
+    instance EmergencyResponseTeamNeeds : stakeholder:Concern [
+        base:description "Effective coordination and communication during fire emergencies."
+        stakeholder:isExpressedBy stakeholders:EmergencyResponseTeam
+        base:priority "High"
+        base:category "Need"
+    ]
 }

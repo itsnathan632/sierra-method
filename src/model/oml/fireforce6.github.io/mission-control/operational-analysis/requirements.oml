@@ -61,4 +61,21 @@ description <https://fireforce6.github.io/mission-control/operational-analysis/r
         base:category "L2"
         base:priority "Medium"
     ]
+
+    instance R8 : stakeholder:Requirement [
+        base:description "Emergency Information Availability"
+        base:expression "The system shall provide Emergency Response Team with timely and accurate fire location information and status information during fire incidents."
+        stakeholder:isStatedBy stakeholders:EmergencyResponseTeam
+        base:category "L1"
+        base:priority "High"
+    ]
+
+    instance R9 : stakeholder:Requirement [
+        base:description "Emergency Communication Reliability"
+        base:expression "The system shall reliably transmit critical emergency information to the Emergency Response Team."
+        stakeholder:isStatedBy stakeholders:EmergencyResponseTeam
+        base:category "L2"
+        base:priority "High"
+    ]
+
 }

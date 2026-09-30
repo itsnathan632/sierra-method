@@ -7,16 +7,21 @@ description <https://fireforce6.github.io/mission-control/system-analysis/connec
     ref instance components:FireSat [
         component:hasPort FireSat.Command_In
         component:hasPort FireSat.Telemetry_Out
+        component:hasPort FireSat.Status_In
+        component:hasPort FireSat.Status_Out
     ]
     instance FireSat.Command_In : component:Port [ component:direction "In" ]
     instance FireSat.Telemetry_Out : component:Port [ component:direction "Out" ]
-
+    instance FireSat.Status_In : component:Port [ component:direction "In" ]
+    instance FireSat.Status_Out : component:Port [ component:direction "Out" ]
     ref instance components:Payload [
         component:hasPort Payload.Data_Out
         component:hasPort Payload.Power_In
+        component:hasPort Payload.Image_In
     ]
     instance Payload.Data_Out : component:Port [ component:direction "Out" ]
     instance Payload.Power_In : component:Port [ component:direction "In" ]
+    instance Payload.Image_In : component:Port [ component:direction "In" ]
 
     ref instance components:Platform [
         component:hasPort Platform.Data_In
@@ -35,6 +40,27 @@ description <https://fireforce6.github.io/mission-control/system-analysis/connec
     ]
     instance Propulsion.Command_In : component:Port [ component:direction "In" ]
     instance Propulsion.Power_In : component:Port [ component:direction "In" ]
+
+    ref instance components:ImageBuffer [
+        component:hasPort ImageBuffer.Data_In
+        component:hasPort ImageBuffer.Data_Out
+    ]
+    instance ImageBuffer.Data_In : component:Port [ component:direction "In" ]
+    instance ImageBuffer.Data_Out : component:Port [ component:direction "Out" ]
+
+    ref instance components:DataFormatter [
+        component:hasPort DataFormatter.Data_In
+        component:hasPort DataFormatter.Data_Out
+    ]
+    instance DataFormatter.Data_In : component:Port [ component:direction "In" ]
+    instance DataFormatter.Data_Out : component:Port [ component:direction "Out" ]
+
+    ref instance components:EmergencyDataRelay [
+        component:hasPort EmergencyDataRelay.Data_In
+        component:hasPort EmergencyDataRelay.Emergency_Data_Out
+    ]
+    instance EmergencyDataRelay.Data_In : component:Port [ component:direction "In" ]
+    instance EmergencyDataRelay.Emergency_Data_Out : component:Port [ component:direction "Out" ]
 
     instance TelemetrySignal : component:Signal []
     instance CommandSignal : component:Signal []
@@ -67,6 +93,18 @@ description <https://fireforce6.github.io/mission-control/system-analysis/connec
     relation instance Conn_Platform_to_FireSatTelem : component:Connection [
         from Platform.Data_Out
         to FireSat.Telemetry_Out
+        component:transfers TelemetrySignal
+    ]
+
+    relation instance Conn_ImageBuffer_to_DataFormatter : component:Connection [
+        from ImageBuffer.Data_Out
+        to DataFormatter.Data_In
+        component:transfers TelemetrySignal
+    ]
+
+    relation instance Conn_DataFormatter_to_EmergencyDataRelay : component:Connection [
+        from DataFormatter.Data_Out
+        to EmergencyDataRelay.Data_In
         component:transfers TelemetrySignal
     ]
 
