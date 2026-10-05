@@ -9,7 +9,7 @@ description <https://fireforce6.github.io/mission-control/operational-analysis/s
     extends <https://fireforce6.github.io/mission-control/operational-analysis/items#> as items
 
     instance MissionControlDashboard : state:StateMachine [
-        base:description "State machine modeling the Mission Control Dashboard operational modes."
+        base:description "State machine coordinating mission monitoring, alert handling, and historical review for the Mission Control Dashboard."
         state:isAllocatedTo entities:DashboardSystem
     ]
 
